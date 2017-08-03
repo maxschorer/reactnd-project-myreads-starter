@@ -6,7 +6,6 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class App extends Component {
-  state = {}
 
   render() {
     return (
