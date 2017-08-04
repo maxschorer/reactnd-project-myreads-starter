@@ -22,7 +22,7 @@ class ListBooks extends Component {
     </div>
   </div>
   <div >
-    <Link className="open-search"to="/search"><a>Add a book</a></Link>
+    <Link className="open-search" to="/search">Add a book</Link>
   </div>
 </div>
    )
