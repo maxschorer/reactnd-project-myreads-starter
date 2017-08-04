@@ -6,12 +6,23 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class App extends Component {
+  state = {
+    books: []
+  }
+
+  componentDidMount(){
+    BooksAPI.getAll().then((books) => {
+      this.setState({books})
+    })
+  }
 
   render() {
+    //console.log(this.state.books)
     return (
+
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks/>
+          <ListBooks books={this.state.books}/>
         )}/>
         <Route path="/search" render={() => (
           <SearchBooks/>
