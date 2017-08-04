@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Bookshelf from './Bookshelf'
 
 class ListBooks extends Component {
   render() {
@@ -15,89 +16,9 @@ class ListBooks extends Component {
   </div>
   <div className="list-books-content">
     <div>
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">Currently Reading</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {currentBooks.map((book) => (
-                  <li key={book.id}>
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api")` }}></div>
-          <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
-        </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.join()}</div>
-      </div>
-    </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">Want to Read</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {wantBooks.map((book) => (
-                  <li key={book.id}>
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api")` }}></div>
-          <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
-        </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.join()}</div>
-      </div>
-    </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">Read</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {readBooks.map((book) => (
-                  <li key={book.id}>
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api")` }}></div>
-          <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
-        </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.join()}</div>
-      </div>
-    </li>
-            ))}
-          </ol>
-        </div>
-      </div>
+      <Bookshelf shelfName="Currently Reading" bookList={currentBooks}/>
+      <Bookshelf shelfName="Want to Read" bookList={wantBooks}/>
+      <Bookshelf shelfName="Read" bookList={readBooks}/>
     </div>
   </div>
   <div >
