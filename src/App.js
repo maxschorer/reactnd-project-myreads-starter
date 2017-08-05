@@ -7,11 +7,15 @@ import './App.css'
 
 class App extends Component {
   state = {
-    books: []
+    books: {currentBooks: [], wantBooks: [], readBooks: []}
   }
 
   componentDidMount(){
-    BooksAPI.getAll().then((books) => {
+    BooksAPI.getAll().then((response) => {
+      const currentBooks = response.filter((book) => book.shelf === "currentlyReading")
+      const wantBooks = response.filter((book) => book.shelf === "wantToRead")
+      const readBooks = response.filter((book) => book.shelf === "read")
+      const books = {currentBooks, wantBooks, readBooks}
       this.setState({books})
     })
   }
@@ -21,7 +25,9 @@ class App extends Component {
 
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks books={this.state.books}/>
+          <ListBooks
+            books={this.state.books}
+          />
         )}/>
         <Route path="/search" render={() => (
           <SearchBooks/>

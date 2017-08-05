@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
 class Book extends Component {
-
+  //updateBook
 
   render(){
     const book = this.props.book
      return (
-     <li key={book.id}>
+     <li>
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api")` }}></div>

@@ -10,20 +10,16 @@ class SearchBooks extends Component {
   }
 
   updateQuery = (query) => {
+    // how to handle failed promise?
     this.setState({query: query.trim()})
-    // handle asynchronously
     BooksAPI.search(query, 20).then((books) => {
-        this.setState({books})
-      })
+      this.setState({books})
+    })
   }
 
   render() {
     const {query, books} = this.state
 
-    let bookList = []
-    for (let book of books){
-      bookList.push(<Book book={book}/>)
-    }
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -39,7 +35,7 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {bookList}
+            {books.map((book) => <Book book={book} key={book.id}/>)}
           </ol>
         </div>
       </div>
