@@ -6,19 +6,19 @@ import Book from './Book'
 class SearchBooks extends Component {
   state = {
     query: '',
-    books: []
+    results: []
   }
 
   updateQuery = (query) => {
     // how to handle failed promise?
     this.setState({query: query.trim()})
-    BooksAPI.search(query, 20).then((books) => {
-      this.setState({books})
+    BooksAPI.search(query, 20).then((results) => {
+      this.setState({results})
     })
   }
 
   render() {
-    const {query, books} = this.state
+    const {query, results} = this.state
 
     return (
       <div className="search-books">
@@ -35,7 +35,7 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map((book) => <Book book={book} key={book.id}/>)}
+            {results.map((book) => <Book book={book} key={book.id}/>)}
           </ol>
         </div>
       </div>
