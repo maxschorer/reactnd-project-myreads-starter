@@ -5,6 +5,9 @@ import Bookshelf from './Bookshelf'
 class ListBooks extends Component {
   render() {
     const {books, updateBookShelf} = this.props
+    const currentlyReading = books.filter((book) => book.shelf === "currentlyReading")
+    const wantToRead = books.filter((book) => book.shelf === "wantToRead")
+    const read = books.filter((book) => book.shelf === "read")
 
    return (
 <div className="list-books">
@@ -13,9 +16,9 @@ class ListBooks extends Component {
   </div>
   <div className="list-books-content">
     <div>
-      <Bookshelf shelfName="Currently Reading" bookList={books["currentlyReading"]} updateBookShelf={updateBookShelf}/>
-      <Bookshelf shelfName="Want to Read" bookList={books["wantToRead"]} updateBookShelf={updateBookShelf}/>
-      <Bookshelf shelfName="Read" bookList={books["read"]} updateBookShelf={updateBookShelf}/>
+      <Bookshelf shelfName="Currently Reading" bookList={currentlyReading} updateBookShelf={updateBookShelf}/>
+      <Bookshelf shelfName="Want to Read" bookList={wantToRead} updateBookShelf={updateBookShelf}/>
+      <Bookshelf shelfName="Read" bookList={read} updateBookShelf={updateBookShelf}/>
     </div>
   </div>
   <div >

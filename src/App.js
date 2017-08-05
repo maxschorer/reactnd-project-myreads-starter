@@ -7,35 +7,25 @@ import './App.css'
 
 class App extends Component {
   state = {
-    books: {"currentlyReading": [], "wantToRead": [], "read": []}
+    books: []
   }
 
   componentDidMount(){
-    BooksAPI.getAll().then((response) => {
-      const currentBooks = response.filter((book) => book.shelf === "currentlyReading")
-      const wantBooks = response.filter((book) => book.shelf === "wantToRead")
-      const readBooks = response.filter((book) => book.shelf === "read")
-      const books = {"currentlyReading": currentBooks, "wantToRead": wantBooks, "read": readBooks}
+    BooksAPI.getAll().then((books) => {
       this.setState({books})
     })
   }
 
-  updateBookShelf(book, shelf){
-    if (shelf === book.shelf) {return}
-    /*
-    Three steps:
-    1) update on backend
-    2) update in local state
-    3) update bookLists
-    */
-    const oldShelf = book.shelf
-    BooksAPI.update(book, shelf) //update on backend
-    //book.shelf = shelf //update in state
-    books = this.state.books
-    books[shelf] = books[shelf].concat([book])
-    books[oldShelf] = books[oldShelf].filter(b.id !== book.id)
-    this.setState({books})
+  updateBookShelf = (book, shelf) => {
+  book.shelf = shelf
+
+  BooksAPI.update(book, shelf).then((res) => {
+    this.setState(state => ({
+      books: state.books.filter(b => b.id !== book.id).concat([book])
+    }))
+  })
   }
+
 
   render() {
     return (
