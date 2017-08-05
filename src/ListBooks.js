@@ -9,22 +9,22 @@ class ListBooks extends Component {
     const wantToRead = books.filter((book) => book.shelf === "wantToRead")
     const read = books.filter((book) => book.shelf === "read")
 
-   return (
-<div className="list-books">
-  <div className="list-books-title">
-    <h1>MyReads</h1>
-  </div>
-  <div className="list-books-content">
-    <div>
-      <Bookshelf shelfName="Currently Reading" bookList={currentlyReading} updateBookShelf={updateBookShelf}/>
-      <Bookshelf shelfName="Want to Read" bookList={wantToRead} updateBookShelf={updateBookShelf}/>
-      <Bookshelf shelfName="Read" bookList={read} updateBookShelf={updateBookShelf}/>
+  return (
+    <div className="list-books">
+      <div className="list-books-title">
+        <h1>MyReads</h1>
+      </div>
+      <div className="list-books-content">
+        <div>
+          <Bookshelf shelfName="Currently Reading" bookList={currentlyReading} updateBookShelf={updateBookShelf}/>
+          <Bookshelf shelfName="Want to Read" bookList={wantToRead} updateBookShelf={updateBookShelf}/>
+          <Bookshelf shelfName="Read" bookList={read} updateBookShelf={updateBookShelf}/>
+        </div>
+      </div>
+      <div >
+        <Link className="open-search" to="/search">Add a book</Link>
+      </div>
     </div>
-  </div>
-  <div >
-    <Link className="open-search" to="/search">Add a book</Link>
-  </div>
-</div>
    )
   }
 

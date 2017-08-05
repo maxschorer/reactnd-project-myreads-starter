@@ -10,7 +10,6 @@ class SearchBooks extends Component {
   }
 
   updateQuery = (query) => {
-    // how to handle failed promise?
     this.setState({query: query.trim()})
     BooksAPI.search(query, 20).then((results) => {
       this.setState({results})
