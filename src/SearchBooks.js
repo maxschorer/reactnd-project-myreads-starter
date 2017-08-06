@@ -11,7 +11,15 @@ class SearchBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({query: query.trim()})
-    BooksAPI.search(query, 20).then((results) => {
+    BooksAPI.search(query, 20).then((bookList) => {
+
+      let results = []
+      let ids = new Set([])
+      for (let book of bookList){
+        if (ids.has(book.id)) continue
+        results.push(book)
+        ids.add(book.id)
+      }
       this.setState({results})
     })
   }
